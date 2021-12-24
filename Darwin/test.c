@@ -62,16 +62,16 @@ int	main(void)
 		ft_strcpy(s2, s1);
 
 		if (strcmp(s1, s2) == 0)
-		{	printf(GREEN); printf("1 : good\n");	}
+		{	printf(GREEN); printf("2 : good\n");	}
 		else
-		{	printf(RED); printf("1 : bad\n");		}
+		{	printf(RED); printf("2 : bad\n");		}
 		free(s1); free(s2);
 
 	# undef STRING
 
 	printf(BLUE); printf("*** ft_strdup ***\n"); printf(NORMAL); //! FT_STRDUP
 	
-	# define STRING "Еhe Algerian dey has a bump under his very nose"
+	# define STRING "The Algerian dey has a bump under his very nose"
 
 	s1 = ft_strdup(STRING);
 	s2 = strdup(STRING);
@@ -107,20 +107,27 @@ int	main(void)
 		free(s1); free(s2);
 
 	# undef STRING
-//	printf(BLUE); printf("*** ft_write ***");
-//		int	x;
-//		int	y;
-//
-//		x = ft_write(1, s2, strlen(s2));
-//		y = write(1, s2, strlen(s2));
-//		if (x == y)
-//		{	printf(GREEN); printf("1 : good\n");	}
-//		else
-//		{	printf(RED); printf("1 : bad\n");	}
-//
-	printf(BLUE); printf("*** ft_read ***\n"); printf(NORMAL); //! FT_READ
+
+	printf(BLUE); printf("*** ft_write ***\n"); printf(NORMAL); //! FT_WRITE
+
+	# define STRING "Everybody wants to be my enemyyyeeeee\n"
+
 		int	x;
 		int	y;
+
+		x = ft_write(1, STRING, strlen(STRING));
+		y = write(1, STRING, strlen(STRING));
+		if (x == y)
+		{	printf(GREEN); printf("1 : good\n");	}
+		else
+		{	printf(RED); printf("1 : bad\n");		}
+
+	# undef STRING
+
+	printf(BLUE); printf("*** ft_read ***\n"); printf(NORMAL); //! FT_READ
+
+	# define STRING "I wanna be the very best. Like no one ever waaaass..."
+
 		int	fd;
 
 		s1 = calloc(100, sizeof(char));
@@ -131,16 +138,24 @@ int	main(void)
 		x = ft_read(fd, s1, 10);
 		y = read(fd, s2, 10);
 
-		// printf("x: %d y: %d\n", x, y);
-		// printf("s1: %s\n", s1);
-		// printf("s2: %s\n", s2);
-
 		if (!strcmp(s1, s2) && x == y)
 		{	printf(GREEN); printf("1 : good\n");	}
 		else
-		{	printf(RED); printf("1 : bad\n");	}
+		{	printf(RED); printf("1 : bad\n");		}
+
+		write(fd, STRING, strlen(STRING));
+
+		x = ft_read(fd, s1, 10);
+		y = read(fd, s2, 10);
+
+		if (!strcmp(s1, s2) && x == y)
+		{	printf(GREEN); printf("2 : good\n");	}
+		else
+		{	printf(RED); printf("2 : bad\n");		}
 
 		unlink("test_file.txt");
+
+	# undef STRING
 
 		return (0);
 }

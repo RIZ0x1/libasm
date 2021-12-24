@@ -1,6 +1,6 @@
 ASM			=	nasm
 ASM_FLGS	=	-f macho64
-ASM_SRCS	=	ft_read.s ft_strlen.s ft_strcmp.s ft_strcpy.s ft_strdup.s
+ASM_SRCS	=	ft_read.s ft_write.s ft_strlen.s ft_strcmp.s ft_strcpy.s ft_strdup.s
 ASM_OBJS	=	$(ASM_SRCS:%.s=%.o)
 LIBASM		=	libasm.a
 
