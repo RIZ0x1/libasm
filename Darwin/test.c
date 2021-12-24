@@ -135,13 +135,18 @@ int	main(void)
 
 		fd = open("test_file.txt", O_RDWR, 0666);
 
-		x = ft_read(fd, s1, 10);
+		errno = 0;
 		y = read(fd, s2, 10);
+		x = ft_read(fd, s1, 10);
 
-		if (!strcmp(s1, s2) && x == y)
+		if (errno == 9)
 		{	printf(GREEN); printf("1 : good\n");	}
 		else
 		{	printf(RED); printf("1 : bad\n");		}
+		if (!strcmp(s1, s2) && x == y)
+		{	printf(GREEN); printf("2 : good\n");	}
+		else
+		{	printf(RED); printf("2 : bad\n");		}
 
 		write(fd, STRING, strlen(STRING));
 
@@ -149,9 +154,9 @@ int	main(void)
 		y = read(fd, s2, 10);
 
 		if (!strcmp(s1, s2) && x == y)
-		{	printf(GREEN); printf("2 : good\n");	}
+		{	printf(GREEN); printf("3 : good\n");	}
 		else
-		{	printf(RED); printf("2 : bad\n");		}
+		{	printf(RED); printf("3 : bad\n");		}
 
 		unlink("test_file.txt");
 

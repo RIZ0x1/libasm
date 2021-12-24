@@ -5,7 +5,7 @@ ASM_OBJS	=	$(ASM_SRCS:%.s=%.o)
 LIBASM		=	libasm.a
 
 СС			=	gcc
-CC_FLGS		=	-g -Wall -Wextra -Werror -L . -l asm
+CC_FLGS		=	-Wall -Wextra -Werror -L . -l asm
 C_SRCS		=	test.c
 TEST		=	test
 

@@ -10,7 +10,7 @@ _ft_strdup:
 	inc		rax			; (rax++)
 	mov		rdi, rax	; rdi = rax
 	call	_malloc		; malloc(rdi) <--------------
-	pop		rdi			; rdi is resotred           |
+	pop		rdi			; rdi is restored           |
 	mov		rsi, rdi	; swap(arg2, arg1)          |
 	mov		rdi, rax	; arg1 = allocated_memory ---
 	call	_ft_strcpy	; strcpy(arg1, arg2)
