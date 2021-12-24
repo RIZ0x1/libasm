@@ -1,0 +1,6 @@
+*/test
+*/test.dSYM
+*/libasm.a
+*/*.o
+.vscode
+*/.vscode
