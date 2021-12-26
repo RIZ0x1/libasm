@@ -1,35 +1,36 @@
-ASM		=	nasm
-FLAGS	=	-f elf64
+ASM			=	nasm
+ASM_FLGS	=	-f elf64
+ASM_SRCS	=	ft_read.s ft_write.s ft_strlen.s ft_strcmp.s ft_strcpy.s ft_strdup.s
+ASM_OBJS	=	$(ASM_SRCS:%.s=%.o)
+LIBASM		=	libasm.a
 
-NAME	=	libasm.a
-SRCS	=	ft_read.s #ft_strcpy.s ft_strlen.s ft_strcmp.s ft_strdup.s ft_write.s
-OBJS	=	$(SRCS:%.s=%.o)
-
-CC			=	gcc
-TEST		=	out
-TEST_C		=	tests.c
-DEPENDENCY	=	-L . -l asm
+СС			=	gcc
+CC_FLGS		=	-Wall -Wextra -Werror -L . -l asm
+C_SRCS		=	test.c
+TEST		=	test
 
 .PHONY: all clean fclean re test
 
-all: $(NAME)
+all: $(LIBASM)
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(ASM_OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(LIBASM) && rm -f $(TEST)
 
 re: fclean all
 
 test: $(TEST)
 
-$(NAME): $(OBJS)
-	ar rc $(NAME) $?
-	ranlib $(NAME)
+# * LIBRARY
+$(LIBASM): $(ASM_OBJS)
+	ar -rc $(LIBASM) $(ASM_OBJS)
 
 %.o: %.s
-	$(ASM) $(FLAGS) $<
+	$(ASM) $(ASM_FLGS) $<
 
-$(TEST): $(TEST_C) $(NAME)
-	$(CC) $(TEST_C) $(DEPENDENCY) -o $(TEST)
+# * TEST
+
+$(TEST):
+	$(CC)  $(C_SRCS) $(CC_FLGS) -o $(TEST) -fPIC
